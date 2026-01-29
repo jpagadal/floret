@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+# see INSTALL for the standard list of control variables
+#export DH_OPTIONS =
+
+# help with debugging debian/rules
+# export DH_OPTIONS=-v
+
+%:
+	dh $@ --buildsystem=cmake --builddirectory=debian/build
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory=debian/build
+
+override_dh_auto_build:
+	dh_auto_build --builddirectory=debian/build
+
+override_dh_auto_clean:
+	dh_auto_clean --builddirectory=debian/build
+
+override_dh_clean:
+	dh_clean
+	rm -rf debian/build debian/tmp
+
+override_dh_auto_install:
+	dh_auto_install --builddirectory=debian/build
+
+override_dh_install:
+	# Let dh_install use debian/*.install files; only do the custom doc copies here.
+	dh_install
+
+	# Install documentation for floret package
+	install -d $(CURDIR)/debian/floret/usr/share/doc/floret
+	install -m 644 debian/copyright $(CURDIR)/debian/floret/usr/share/doc/floret/
+	install -m 644 README.md $(CURDIR)/debian/floret/usr/share/doc/floret/
+
+	# Install documentation for floret-dev package (just copyright for now)
+	install -d $(CURDIR)/debian/floret-dev/usr/share/doc/floret-dev
+	install -m 644 debian/copyright $(CURDIR)/debian/floret-dev/usr/share/doc/floret-dev/

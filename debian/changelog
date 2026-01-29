@@ -1,0 +1,5 @@
+floret (1.0.0-2) unstable; urgency=medium
+
+  * Changed to provide C++ binaries, libraries, and development headers. No longer a Python package.
+
+ -- Jagadeesh Pagadala <jpagadal@qti.qualcomm.com>  Wed, 28 Jan 2026 20:45:30 +0530

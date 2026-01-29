@@ -1,0 +1,22 @@
+Source: floret
+Section: libs
+Priority: optional
+Maintainer: Your Name <your.email@example.com>
+Build-Depends: debhelper (>= 13),
+               cmake
+Standards-Version: 4.6.0
+Homepage: https://github.com/your-repo/floret
+
+Package: floret
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Fast and lightweight text classification library
+ This library provides efficient text classification and word embedding
+ tools. It includes C++ binaries and libraries.
+
+Package: floret-dev
+Architecture: any
+Depends: floret (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: Development files for floret
+ This package contains the header files and static libraries necessary for
+ C/C++ development with floret.
